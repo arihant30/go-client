@@ -4077,6 +4077,29 @@ type SAMLv2SingleLogout struct {
 }
 
 /**
+ * A SCIM server where events are sent.
+ *
+ * @author Brett Pontarelli
+ */
+type ScimServer struct {
+	Enableable
+	ConnectTimeout             int                    `json:"connectTimeout,omitempty"`
+	Data                       map[string]interface{} `json:"data,omitempty"`
+	Description                string                 `json:"description,omitempty"`
+	Global                     bool                   `json:"global"`
+	Headers                    map[string]string      `json:"headers,omitempty"`
+	HttpAuthenticationPassword string                 `json:"httpAuthenticationPassword,omitempty"`
+	HttpAuthenticationUsername string                 `json:"httpAuthenticationUsername,omitempty"`
+	Id                         string                 `json:"id,omitempty"`
+	InsertInstant              int64                  `json:"insertInstant,omitempty"`
+	LastUpdateInstant          int64                  `json:"lastUpdateInstant,omitempty"`
+	ReadTimeout                int                    `json:"readTimeout,omitempty"`
+	SslCertificate             string                 `json:"sslCertificate,omitempty"`
+	TenantIds                  []string               `json:"tenantIds,omitempty"`
+	Url                        string                 `json:"url,omitempty"`
+}
+
+/**
  * Search API request.
  *
  * @author Brian Pontarelli
