@@ -475,11 +475,7 @@ type BaseElasticSearchCriteria struct {
 	SortFields    []SortField `json:"sortFields,omitempty"`
 }
 
-/**
- * Base-class for all FusionAuth events.
- *
- * @author Brian Pontarelli
- */
+// [brettp]TODO: Rename this and all Events to *WebhookEvent?
 type BaseEvent struct {
 	CreateInstant int64     `json:"createInstant,omitempty"`
 	Id            string    `json:"id,omitempty"`
@@ -552,6 +548,18 @@ type BaseMessengerConfiguration struct {
 	Name              string                 `json:"name,omitempty"`
 	Transport         string                 `json:"transport,omitempty"`
 	Type              MessengerType          `json:"type,omitempty"`
+}
+
+/**
+ * Base class for all SCIM events
+ *
+ * @author Brett Pontarelli
+ */
+type BaseScimEvent struct {
+	ExternalId string   `json:"externalId,omitempty"`
+	Id         string   `json:"id,omitempty"`
+	Meta       ScimMeta `json:"meta,omitempty"`
+	Schemas    []string `json:"schemas,omitempty"`
 }
 
 /**
@@ -1931,22 +1939,6 @@ const (
  */
 type FusionAuthConnectorConfiguration struct {
 	BaseConnectorConfiguration
-}
-
-/**
- * Models a generic connector.
- *
- * @author Trevor Smith
- */
-type GenericConnectorConfiguration struct {
-	BaseConnectorConfiguration
-	AuthenticationURL          string            `json:"authenticationURL,omitempty"`
-	ConnectTimeout             int               `json:"connectTimeout,omitempty"`
-	Headers                    map[string]string `json:"headers,omitempty"`
-	HttpAuthenticationPassword string            `json:"httpAuthenticationPassword,omitempty"`
-	HttpAuthenticationUsername string            `json:"httpAuthenticationUsername,omitempty"`
-	ReadTimeout                int               `json:"readTimeout,omitempty"`
-	SslCertificateKeyId        string            `json:"sslCertificateKeyId,omitempty"`
 }
 
 /**
@@ -3832,18 +3824,6 @@ type RefreshTokenRevocationPolicy struct {
 }
 
 /**
- * Request for the Refresh Token API to revoke a refresh token rather than using the URL parameters.
- *
- * @author Brian Pontarelli
- */
-type RefreshTokenRevokeRequest struct {
-	BaseEventRequest
-	ApplicationId string `json:"applicationId,omitempty"`
-	Token         string `json:"token,omitempty"`
-	UserId        string `json:"userId,omitempty"`
-}
-
-/**
  * @author Daniel DeGroff
  */
 type RefreshTokenUsagePolicy string
@@ -4077,6 +4057,22 @@ type SAMLv2SingleLogout struct {
 }
 
 /**
+ * Container for the SCIM event information. This is the JSON that is sent from FusionAuth to SCIM Servers.
+ *
+ * @author Brett Pontarelli
+ */
+type ScimEventRequest struct {
+	Event BaseScimEvent `json:"event,omitempty"`
+}
+
+type ScimMeta struct {
+	Created      int64  `json:"created,omitempty"`
+	LastModified int64  `json:"lastModified,omitempty"`
+	Location     string `json:"location,omitempty"`
+	ResourceType string `json:"resourceType,omitempty"`
+}
+
+/**
  * A SCIM server where events are sent.
  *
  * @author Brett Pontarelli
@@ -4097,6 +4093,25 @@ type ScimServer struct {
 	SslCertificate             string                 `json:"sslCertificate,omitempty"`
 	TenantIds                  []string               `json:"tenantIds,omitempty"`
 	Url                        string                 `json:"url,omitempty"`
+}
+
+/**
+ * Container for SCIM event information. This is the JSON that is sent from FusionAuth to a SCIM server.
+ *
+ * @author Brett Pontarelli
+ */
+type ScimUserEvent struct {
+	BaseScimEvent
+	Active            bool                `json:"active"`
+	DisplayName       string              `json:"displayName,omitempty"`
+	Emails            []map[string]string `json:"emails,omitempty"`
+	Groups            []GroupMember       `json:"groups,omitempty"`
+	Name              map[string]string   `json:"name,omitempty"`
+	PhoneNumbers      []map[string]string `json:"phoneNumbers,omitempty"`
+	Photos            []map[string]string `json:"photos,omitempty"`
+	PreferredLanguage []string            `json:"preferredLanguage,omitempty"`
+	Timezone          string              `json:"timezone,omitempty"`
+	UserName          string              `json:"userName,omitempty"`
 }
 
 /**
