@@ -1409,6 +1409,7 @@ type EventConfigurationData struct {
  * @author Brian Pontarelli
  */
 type EventInfo struct {
+	BaseUri           string                 `json:"baseUri,omitempty"`
 	Data              map[string]interface{} `json:"data,omitempty"`
 	DeviceDescription string                 `json:"deviceDescription,omitempty"`
 	DeviceName        string                 `json:"deviceName,omitempty"`
@@ -1939,6 +1940,22 @@ const (
  */
 type FusionAuthConnectorConfiguration struct {
 	BaseConnectorConfiguration
+}
+
+/**
+ * Models a generic connector.
+ *
+ * @author Trevor Smith
+ */
+type GenericConnectorConfiguration struct {
+	BaseConnectorConfiguration
+	AuthenticationURL          string            `json:"authenticationURL,omitempty"`
+	ConnectTimeout             int               `json:"connectTimeout,omitempty"`
+	Headers                    map[string]string `json:"headers,omitempty"`
+	HttpAuthenticationPassword string            `json:"httpAuthenticationPassword,omitempty"`
+	HttpAuthenticationUsername string            `json:"httpAuthenticationUsername,omitempty"`
+	ReadTimeout                int               `json:"readTimeout,omitempty"`
+	SslCertificateKeyId        string            `json:"sslCertificateKeyId,omitempty"`
 }
 
 /**
@@ -3821,6 +3838,18 @@ func (b *RefreshTokenResponse) SetStatus(status int) {
 type RefreshTokenRevocationPolicy struct {
 	OnLoginPrevented  bool `json:"onLoginPrevented"`
 	OnPasswordChanged bool `json:"onPasswordChanged"`
+}
+
+/**
+ * Request for the Refresh Token API to revoke a refresh token rather than using the URL parameters.
+ *
+ * @author Brian Pontarelli
+ */
+type RefreshTokenRevokeRequest struct {
+	BaseEventRequest
+	ApplicationId string `json:"applicationId,omitempty"`
+	Token         string `json:"token,omitempty"`
+	UserId        string `json:"userId,omitempty"`
 }
 
 /**
