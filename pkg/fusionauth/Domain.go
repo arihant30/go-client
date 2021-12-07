@@ -551,11 +551,11 @@ type BaseMessengerConfiguration struct {
 }
 
 /**
- * Base class for all SCIM events
+ * Base class for all SCIM resources
  *
  * @author Brett Pontarelli
  */
-type BaseScimEvent struct {
+type BaseScimResource struct {
 	ExternalId string   `json:"externalId,omitempty"`
 	Id         string   `json:"id,omitempty"`
 	Meta       ScimMeta `json:"meta,omitempty"`
@@ -1409,7 +1409,6 @@ type EventConfigurationData struct {
  * @author Brian Pontarelli
  */
 type EventInfo struct {
-	BaseUri           string                 `json:"baseUri,omitempty"`
 	Data              map[string]interface{} `json:"data,omitempty"`
 	DeviceDescription string                 `json:"deviceDescription,omitempty"`
 	DeviceName        string                 `json:"deviceName,omitempty"`
@@ -4091,7 +4090,7 @@ type SAMLv2SingleLogout struct {
  * @author Brett Pontarelli
  */
 type ScimEventRequest struct {
-	Event BaseScimEvent `json:"event,omitempty"`
+	Event BaseScimResource `json:"event,omitempty"`
 }
 
 type ScimMeta struct {
@@ -4129,8 +4128,8 @@ type ScimServer struct {
  *
  * @author Brett Pontarelli
  */
-type ScimUserEvent struct {
-	BaseScimEvent
+type ScimUserResource struct {
+	BaseScimResource
 	Active            bool                `json:"active"`
 	DisplayName       string              `json:"displayName,omitempty"`
 	Emails            []map[string]string `json:"emails,omitempty"`
