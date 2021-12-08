@@ -4090,7 +4090,7 @@ type SAMLv2SingleLogout struct {
  * @author Brett Pontarelli
  */
 type ScimEventRequest struct {
-	Event BaseScimResource `json:"event,omitempty"`
+	Resource BaseScimResource `json:"resource,omitempty"`
 }
 
 type ScimMeta struct {
