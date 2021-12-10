@@ -555,6 +555,18 @@ type BaseMessengerConfiguration struct {
 }
 
 /**
+ * Base class for all SCIM events
+ *
+ * @author Brett Pontarelli
+ */
+type BaseScimEventRequest struct {
+	ExternalId string                 `json:"externalId,omitempty"`
+	Id         string                 `json:"id,omitempty"`
+	Meta       map[string]interface{} `json:"meta,omitempty"`
+	Schemas    []string               `json:"schemas,omitempty"`
+}
+
+/**
  * @author Brian Pontarelli
  */
 type BaseSearchCriteria struct {
@@ -4076,6 +4088,9 @@ type SAMLv2SingleLogout struct {
 	XmlSignatureC14nMethod CanonicalizationMethod `json:"xmlSignatureC14nMethod,omitempty"`
 }
 
+type ScimMeta struct {
+}
+
 /**
  * A SCIM server where events are sent.
  *
@@ -4097,6 +4112,25 @@ type ScimServer struct {
 	SslCertificate             string                 `json:"sslCertificate,omitempty"`
 	TenantIds                  []string               `json:"tenantIds,omitempty"`
 	Url                        string                 `json:"url,omitempty"`
+}
+
+/**
+ * Container for SCIM event information. This is the JSON that is sent from FusionAuth to a SCIM server.
+ *
+ * @author Brett Pontarelli
+ */
+type ScimUserEventRequest struct {
+	BaseScimEventRequest
+	Active            bool                `json:"active"`
+	DisplayName       string              `json:"displayName,omitempty"`
+	Emails            []interface{}       `json:"emails,omitempty"`
+	Groups            []GroupMember       `json:"groups,omitempty"`
+	Name              map[string]string   `json:"name,omitempty"`
+	PhoneNumbers      []map[string]string `json:"phoneNumbers,omitempty"`
+	Photos            []map[string]string `json:"photos,omitempty"`
+	PreferredLanguage []string            `json:"preferredLanguage,omitempty"`
+	Timezone          string              `json:"timezone,omitempty"`
+	UserName          string              `json:"userName,omitempty"`
 }
 
 /**
