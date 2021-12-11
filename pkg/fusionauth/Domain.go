@@ -475,7 +475,11 @@ type BaseElasticSearchCriteria struct {
 	SortFields    []SortField `json:"sortFields,omitempty"`
 }
 
-// [brettp]TODO: Rename this and all Events to *WebhookEvent?
+/**
+ * Base-class for all FusionAuth events.
+ *
+ * @author Brian Pontarelli
+ */
 type BaseEvent struct {
 	CreateInstant int64     `json:"createInstant,omitempty"`
 	Id            string    `json:"id,omitempty"`
@@ -551,15 +555,15 @@ type BaseMessengerConfiguration struct {
 }
 
 /**
- * Base class for all SCIM resources
+ * Base class for all SCIM events
  *
  * @author Brett Pontarelli
  */
-type BaseScimResource struct {
-	ExternalId string   `json:"externalId,omitempty"`
-	Id         string   `json:"id,omitempty"`
-	Meta       ScimMeta `json:"meta,omitempty"`
-	Schemas    []string `json:"schemas,omitempty"`
+type BaseScimEventRequest struct {
+	ExternalId string                 `json:"externalId,omitempty"`
+	Id         string                 `json:"id,omitempty"`
+	Meta       map[string]interface{} `json:"meta,omitempty"`
+	Schemas    []string               `json:"schemas,omitempty"`
 }
 
 /**
@@ -4084,20 +4088,7 @@ type SAMLv2SingleLogout struct {
 	XmlSignatureC14nMethod CanonicalizationMethod `json:"xmlSignatureC14nMethod,omitempty"`
 }
 
-/**
- * Container for the SCIM event information. This is the JSON that is sent from FusionAuth to SCIM Servers.
- *
- * @author Brett Pontarelli
- */
-type ScimEventRequest struct {
-	Resource BaseScimResource `json:"resource,omitempty"`
-}
-
 type ScimMeta struct {
-	Created      int64  `json:"created,omitempty"`
-	LastModified int64  `json:"lastModified,omitempty"`
-	Location     string `json:"location,omitempty"`
-	ResourceType string `json:"resourceType,omitempty"`
 }
 
 /**
@@ -4128,11 +4119,11 @@ type ScimServer struct {
  *
  * @author Brett Pontarelli
  */
-type ScimUserResource struct {
-	BaseScimResource
+type ScimUserEventRequest struct {
+	BaseScimEventRequest
 	Active            bool                `json:"active"`
 	DisplayName       string              `json:"displayName,omitempty"`
-	Emails            []map[string]string `json:"emails,omitempty"`
+	Emails            []interface{}       `json:"emails,omitempty"`
 	Groups            []GroupMember       `json:"groups,omitempty"`
 	Name              map[string]string   `json:"name,omitempty"`
 	PhoneNumbers      []map[string]string `json:"phoneNumbers,omitempty"`
