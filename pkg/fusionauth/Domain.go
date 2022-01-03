@@ -567,6 +567,18 @@ type BaseScimEventRequest struct {
 }
 
 /**
+ * Base class for all SCIM resources
+ *
+ * @author Brett Pontarelli
+ */
+type BaseScimResource struct {
+	ExternalId string   `json:"externalId,omitempty"`
+	Id         string   `json:"id,omitempty"`
+	Meta       ScimMeta `json:"meta,omitempty"`
+	Schemas    []string `json:"schemas,omitempty"`
+}
+
+/**
  * @author Brian Pontarelli
  */
 type BaseSearchCriteria struct {
@@ -2046,6 +2058,34 @@ type GroupMember struct {
 	Id            string                 `json:"id,omitempty"`
 	InsertInstant int64                  `json:"insertInstant,omitempty"`
 	UserId        string                 `json:"userId,omitempty"`
+}
+
+/**
+ * Info about a group member for listing members
+ *
+ * @author Rob Davis
+ */
+type GroupMemberData struct {
+	Data          map[string]interface{} `json:"data,omitempty"`
+	GroupId       string                 `json:"groupId,omitempty"`
+	Id            string                 `json:"id,omitempty"`
+	InsertInstant int64                  `json:"insertInstant,omitempty"`
+	User          User                   `json:"user,omitempty"`
+	UserId        string                 `json:"userId,omitempty"`
+}
+
+/**
+ * Group Member Response
+ *
+ * @author Daniel DeGroff
+ */
+type GroupMemberListResponse struct {
+	BaseHTTPResponse
+	Members []GroupMemberData `json:"members,omitempty"`
+}
+
+func (b *GroupMemberListResponse) SetStatus(status int) {
+	b.StatusCode = status
 }
 
 /**
@@ -4088,7 +4128,23 @@ type SAMLv2SingleLogout struct {
 	XmlSignatureC14nMethod CanonicalizationMethod `json:"xmlSignatureC14nMethod,omitempty"`
 }
 
+/**
+ * Container for the SCIM event information. This is the JSON that is sent from FusionAuth to SCIM Servers.
+ *
+ * @author Brett Pontarelli
+ */
+type ScimEventRequest struct {
+	Resource BaseScimResource `json:"resource,omitempty"`
+}
+
 type ScimMeta struct {
+}
+
+type ScimMeta struct {
+	Created      int64  `json:"created,omitempty"`
+	LastModified int64  `json:"lastModified,omitempty"`
+	Location     string `json:"location,omitempty"`
+	ResourceType string `json:"resourceType,omitempty"`
 }
 
 /**

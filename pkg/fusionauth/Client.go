@@ -3322,6 +3322,20 @@ func (c *FusionAuthClient) RetrieveGroup(groupId string) (*GroupResponse, *Error
 	return &resp, &errors, err
 }
 
+// RetrieveGroupMemberList
+// Retrieves all of the members of a group.
+//   string groupId The Id of the group.
+func (c *FusionAuthClient) RetrieveGroupMemberList(groupId string) (*GroupMemberListResponse, error) {
+	var resp GroupMemberListResponse
+
+	err := c.Start(&resp, nil).
+		WithUri("/api/group/member").
+		WithUriSegment(groupId).
+		WithMethod(http.MethodGet).
+		Do()
+	return &resp, err
+}
+
 // RetrieveGroups
 // Retrieves all of the groups.
 func (c *FusionAuthClient) RetrieveGroups() (*GroupResponse, error) {
