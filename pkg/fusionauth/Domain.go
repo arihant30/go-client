@@ -2075,9 +2075,9 @@ type GroupMemberData struct {
 }
 
 /**
- * Group Member Response
+ * Group Member List Response
  *
- * @author Daniel DeGroff
+ * @author Rob Davis
  */
 type GroupMemberListResponse struct {
 	BaseHTTPResponse
