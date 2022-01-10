@@ -102,6 +102,10 @@ func (b *ActionResponse) SetStatus(status int) {
  */
 type Algorithm string
 
+func (e Algorithm) String() string {
+	return string(e)
+}
+
 const (
 	Algorithm_ES256 Algorithm = "ES256"
 	Algorithm_ES384 Algorithm = "ES384"
@@ -435,6 +439,10 @@ func (b *AuditLogSearchResponse) SetStatus(status int) {
  */
 type AuthenticationThreats string
 
+func (e AuthenticationThreats) String() string {
+	return string(e)
+}
+
 const (
 	AuthenticationThreats_ImpossibleTravel AuthenticationThreats = "ImpossibleTravel"
 )
@@ -509,16 +517,17 @@ type BaseExportRequest struct {
 // Do not require a setter for 'type', it is defined by the concrete class and is not mutable
 type BaseIdentityProvider struct {
 	Enableable
-	ApplicationConfiguration map[string]interface{}          `json:"applicationConfiguration,omitempty"`
-	Data                     map[string]interface{}          `json:"data,omitempty"`
-	Debug                    bool                            `json:"debug"`
-	Id                       string                          `json:"id,omitempty"`
-	InsertInstant            int64                           `json:"insertInstant,omitempty"`
-	LambdaConfiguration      ProviderLambdaConfiguration     `json:"lambdaConfiguration,omitempty"`
-	LastUpdateInstant        int64                           `json:"lastUpdateInstant,omitempty"`
-	LinkingStrategy          IdentityProviderLinkingStrategy `json:"linkingStrategy,omitempty"`
-	Name                     string                          `json:"name,omitempty"`
-	Type                     IdentityProviderType            `json:"type,omitempty"`
+	ApplicationConfiguration map[string]interface{}                         `json:"applicationConfiguration,omitempty"`
+	Data                     map[string]interface{}                         `json:"data,omitempty"`
+	Debug                    bool                                           `json:"debug"`
+	Id                       string                                         `json:"id,omitempty"`
+	InsertInstant            int64                                          `json:"insertInstant,omitempty"`
+	LambdaConfiguration      ProviderLambdaConfiguration                    `json:"lambdaConfiguration,omitempty"`
+	LastUpdateInstant        int64                                          `json:"lastUpdateInstant,omitempty"`
+	LinkingStrategy          IdentityProviderLinkingStrategy                `json:"linkingStrategy,omitempty"`
+	Name                     string                                         `json:"name,omitempty"`
+	TenantConfiguration      map[string]IdentityProviderTenantConfiguration `json:"tenantConfiguration,omitempty"`
+	Type                     IdentityProviderType                           `json:"type,omitempty"`
 }
 
 /**
@@ -589,6 +598,10 @@ type BaseSearchCriteria struct {
 
 type BreachAction string
 
+func (e BreachAction) String() string {
+	return string(e)
+}
+
 const (
 	BreachAction_Off           BreachAction = "Off"
 	BreachAction_RecordOnly    BreachAction = "RecordOnly"
@@ -600,6 +613,10 @@ const (
  * @author Daniel DeGroff
  */
 type BreachedPasswordStatus string
+
+func (e BreachedPasswordStatus) String() string {
+	return string(e)
+}
 
 const (
 	BreachedPasswordStatus_None            BreachedPasswordStatus = "None"
@@ -623,6 +640,10 @@ type BreachedPasswordTenantMetric struct {
 
 type BreachMatchMode string
 
+func (e BreachMatchMode) String() string {
+	return string(e)
+}
+
 const (
 	BreachMatchMode_Low    BreachMatchMode = "Low"
 	BreachMatchMode_Medium BreachMatchMode = "Medium"
@@ -636,6 +657,10 @@ const (
  */
 type CanonicalizationMethod string
 
+func (e CanonicalizationMethod) String() string {
+	return string(e)
+}
+
 const (
 	CanonicalizationMethod_Exclusive             CanonicalizationMethod = "exclusive"
 	CanonicalizationMethod_ExclusiveWithComments CanonicalizationMethod = "exclusive_with_comments"
@@ -647,6 +672,10 @@ const (
  * @author Brett Pontarelli
  */
 type CaptchaMethod string
+
+func (e CaptchaMethod) String() string {
+	return string(e)
+}
 
 const (
 	CaptchaMethod_GoogleRecaptchaV2  CaptchaMethod = "GoogleRecaptchaV2"
@@ -672,6 +701,10 @@ type CertificateInformation struct {
  * @author Trevor Smith
  */
 type ChangePasswordReason string
+
+func (e ChangePasswordReason) String() string {
+	return string(e)
+}
 
 const (
 	ChangePasswordReason_Administrative ChangePasswordReason = "Administrative"
@@ -724,6 +757,10 @@ type CleanSpeakConfiguration struct {
 
 type ClientAuthenticationMethod string
 
+func (e ClientAuthenticationMethod) String() string {
+	return string(e)
+}
+
 const (
 	ClientAuthenticationMethod_None              ClientAuthenticationMethod = "none"
 	ClientAuthenticationMethod_ClientSecretBasic ClientAuthenticationMethod = "client_secret_basic"
@@ -734,6 +771,10 @@ const (
  * @author Brett Guy
  */
 type ClientAuthenticationPolicy string
+
+func (e ClientAuthenticationPolicy) String() string {
+	return string(e)
+}
 
 const (
 	ClientAuthenticationPolicy_Required                 ClientAuthenticationPolicy = "Required"
@@ -777,6 +818,10 @@ func (b *ConnectorResponse) SetStatus(status int) {
  * @author Trevor Smith
  */
 type ConnectorType string
+
+func (e ConnectorType) String() string {
+	return string(e)
+}
 
 const (
 	ConnectorType_FusionAuth ConnectorType = "FusionAuth"
@@ -834,6 +879,10 @@ func (b *ConsentResponse) SetStatus(status int) {
  */
 type ConsentStatus string
 
+func (e ConsentStatus) String() string {
+	return string(e)
+}
+
 const (
 	ConsentStatus_Active  ConsentStatus = "Active"
 	ConsentStatus_Revoked ConsentStatus = "Revoked"
@@ -845,6 +894,10 @@ const (
  * @author Brian Pontarelli
  */
 type ContentStatus string
+
+func (e ContentStatus) String() string {
+	return string(e)
+}
 
 const (
 	ContentStatus_ACTIVE   ContentStatus = "ACTIVE"
@@ -924,6 +977,10 @@ func (b *DeviceResponse) SetStatus(status int) {
 
 type DeviceType string
 
+func (e DeviceType) String() string {
+	return string(e)
+}
+
 const (
 	DeviceType_BROWSER DeviceType = "BROWSER"
 	DeviceType_DESKTOP DeviceType = "DESKTOP"
@@ -985,12 +1042,14 @@ type EmailAddress struct {
  * @author Brian Pontarelli
  */
 type EmailConfiguration struct {
+	AdditionalHeaders                    []EmailHeader          `json:"additionalHeaders,omitempty"`
 	DefaultFromEmail                     string                 `json:"defaultFromEmail,omitempty"`
 	DefaultFromName                      string                 `json:"defaultFromName,omitempty"`
 	EmailUpdateEmailTemplateId           string                 `json:"emailUpdateEmailTemplateId,omitempty"`
 	EmailVerifiedEmailTemplateId         string                 `json:"emailVerifiedEmailTemplateId,omitempty"`
 	ForgotPasswordEmailTemplateId        string                 `json:"forgotPasswordEmailTemplateId,omitempty"`
 	Host                                 string                 `json:"host,omitempty"`
+	ImplicitEmailVerificationAllowed     bool                   `json:"implicitEmailVerificationAllowed"`
 	LoginIdInUseOnCreateEmailTemplateId  string                 `json:"loginIdInUseOnCreateEmailTemplateId,omitempty"`
 	LoginIdInUseOnUpdateEmailTemplateId  string                 `json:"loginIdInUseOnUpdateEmailTemplateId,omitempty"`
 	LoginNewDeviceEmailTemplateId        string                 `json:"loginNewDeviceEmailTemplateId,omitempty"`
@@ -1013,6 +1072,14 @@ type EmailConfiguration struct {
 	VerifyEmailWhenChanged               bool                   `json:"verifyEmailWhenChanged"`
 }
 
+/**
+ * @author Daniel DeGroff
+ */
+type EmailHeader struct {
+	Name  string `json:"name,omitempty"`
+	Value string `json:"value,omitempty"`
+}
+
 type EmailPlus struct {
 	Enableable
 	EmailTemplateId               string `json:"emailTemplateId,omitempty"`
@@ -1021,6 +1088,10 @@ type EmailPlus struct {
 }
 
 type EmailSecurityType string
+
+func (e EmailSecurityType) String() string {
+	return string(e)
+}
 
 const (
 	EmailSecurityType_NONE EmailSecurityType = "NONE"
@@ -1374,8 +1445,9 @@ type EpicGamesIdentityProvider struct {
  * @author Brian Pontarelli
  */
 type Error struct {
-	Code    string `json:"code,omitempty"`
-	Message string `json:"message,omitempty"`
+	Code    string                 `json:"code,omitempty"`
+	Data    map[string]interface{} `json:"data,omitempty"`
+	Message string                 `json:"message,omitempty"`
 }
 
 /**
@@ -1517,6 +1589,10 @@ func (b *EventLogSearchResponse) SetStatus(status int) {
  */
 type EventLogType string
 
+func (e EventLogType) String() string {
+	return string(e)
+}
+
 const (
 	EventLogType_Information EventLogType = "Information"
 	EventLogType_Debug       EventLogType = "Debug"
@@ -1538,6 +1614,10 @@ type EventRequest struct {
  * @author Brian Pontarelli
  */
 type EventType string
+
+func (e EventType) String() string {
+	return string(e)
+}
 
 const (
 	EventType_JWTPublicKeyUpdate             EventType = "jwt.public-key.update"
@@ -1585,6 +1665,10 @@ const (
  * @author Brian Pontarelli
  */
 type ExpiryUnit string
+
+func (e ExpiryUnit) String() string {
+	return string(e)
+}
 
 const (
 	ExpiryUnit_MINUTES ExpiryUnit = "MINUTES"
@@ -1764,6 +1848,10 @@ func (b *FamilyResponse) SetStatus(status int) {
 
 type FamilyRole string
 
+func (e FamilyRole) String() string {
+	return string(e)
+}
+
 const (
 	FamilyRole_Child FamilyRole = "Child"
 	FamilyRole_Teen  FamilyRole = "Teen"
@@ -1818,6 +1906,10 @@ type Form struct {
  */
 type FormControl string
 
+func (e FormControl) String() string {
+	return string(e)
+}
+
 const (
 	FormControl_Checkbox FormControl = "checkbox"
 	FormControl_Number   FormControl = "number"
@@ -1832,6 +1924,10 @@ const (
  * @author Daniel DeGroff
  */
 type FormDataType string
+
+func (e FormDataType) String() string {
+	return string(e)
+}
 
 const (
 	FormDataType_Bool    FormDataType = "bool"
@@ -1866,6 +1962,10 @@ type FormField struct {
  * @author Daniel DeGroff
  */
 type FormFieldAdminPolicy string
+
+func (e FormFieldAdminPolicy) String() string {
+	return string(e)
+}
 
 const (
 	FormFieldAdminPolicy_Edit FormFieldAdminPolicy = "Edit"
@@ -1940,6 +2040,10 @@ type FormStep struct {
  * @author Daniel DeGroff
  */
 type FormType string
+
+func (e FormType) String() string {
+	return string(e)
+}
 
 const (
 	FormType_Registration      FormType = "registration"
@@ -2023,6 +2127,10 @@ type GoogleIdentityProvider struct {
  * @author Daniel DeGroff
  */
 type GrantType string
+
+func (e GrantType) String() string {
+	return string(e)
+}
 
 const (
 	GrantType_AuthorizationCode GrantType = "authorization_code"
@@ -2125,6 +2233,10 @@ type HistoryItem struct {
  */
 type HTTPMethod string
 
+func (e HTTPMethod) String() string {
+	return string(e)
+}
+
 const (
 	HTTPMethod_GET     HTTPMethod = "GET"
 	HTTPMethod_POST    HTTPMethod = "POST"
@@ -2165,6 +2277,14 @@ type IdentityProviderDetails struct {
 /**
  * @author Daniel DeGroff
  */
+type IdentityProviderLimitUserLinkingPolicy struct {
+	Enableable
+	MaximumLinks int `json:"maximumLinks,omitempty"`
+}
+
+/**
+ * @author Daniel DeGroff
+ */
 type IdentityProviderLink struct {
 	Data                   map[string]interface{} `json:"data,omitempty"`
 	DisplayName            string                 `json:"displayName,omitempty"`
@@ -2183,6 +2303,10 @@ type IdentityProviderLink struct {
  * @author Daniel DeGroff
  */
 type IdentityProviderLinkingStrategy string
+
+func (e IdentityProviderLinkingStrategy) String() string {
+	return string(e)
+}
 
 const (
 	IdentityProviderLinkingStrategy_CreatePendingLink             IdentityProviderLinkingStrategy = "CreatePendingLink"
@@ -2222,6 +2346,10 @@ func (b *IdentityProviderLinkResponse) SetStatus(status int) {
  * @author Brett Pontarelli
  */
 type IdentityProviderLoginMethod string
+
+func (e IdentityProviderLoginMethod) String() string {
+	return string(e)
+}
 
 const (
 	IdentityProviderLoginMethod_UsePopup    IdentityProviderLoginMethod = "UsePopup"
@@ -2304,7 +2432,19 @@ func (b *IdentityProviderStartLoginResponse) SetStatus(status int) {
 /**
  * @author Daniel DeGroff
  */
+type IdentityProviderTenantConfiguration struct {
+	Data               map[string]interface{}                 `json:"data,omitempty"`
+	LimitUserLinkCount IdentityProviderLimitUserLinkingPolicy `json:"limitUserLinkCount,omitempty"`
+}
+
+/**
+ * @author Daniel DeGroff
+ */
 type IdentityProviderType string
+
+func (e IdentityProviderType) String() string {
+	return string(e)
+}
 
 const (
 	IdentityProviderType_Apple              IdentityProviderType = "Apple"
@@ -2381,6 +2521,15 @@ type Integrations struct {
 }
 
 /**
+ * An SPI that allows the user of the `fusionauth-java-client` library to provide the InternalJSONColumn handling (if needed). The implementation is
+ * specified using the {@link #setImplementation(InternalJSONColumnService)} method.
+ *
+ * @author Brian Pontarelli
+ */
+type InternalJSONColumnService struct {
+}
+
+/**
  * @author Brett Guy
  */
 type IPAccessControlEntry struct {
@@ -2393,6 +2542,10 @@ type IPAccessControlEntry struct {
  * @author Brett Guy
  */
 type IPAccessControlEntryAction string
+
+func (e IPAccessControlEntryAction) String() string {
+	return string(e)
+}
 
 const (
 	IPAccessControlEntryAction_Allow IPAccessControlEntryAction = "Allow"
@@ -2679,6 +2832,10 @@ type Key struct {
 
 type KeyAlgorithm string
 
+func (e KeyAlgorithm) String() string {
+	return string(e)
+}
+
 const (
 	KeyAlgorithm_ES256 KeyAlgorithm = "ES256"
 	KeyAlgorithm_ES384 KeyAlgorithm = "ES384"
@@ -2717,6 +2874,10 @@ func (b *KeyResponse) SetStatus(status int) {
 
 type KeyType string
 
+func (e KeyType) String() string {
+	return string(e)
+}
+
 const (
 	KeyType_EC   KeyType = "EC"
 	KeyType_RSA  KeyType = "RSA"
@@ -2729,6 +2890,10 @@ const (
  * @author Daniel DeGroff
  */
 type KeyUse string
+
+func (e KeyUse) String() string {
+	return string(e)
+}
 
 const (
 	KeyUse_SignOnly      KeyUse = "SignOnly"
@@ -2803,6 +2968,10 @@ func (b *LambdaResponse) SetStatus(status int) {
  */
 type LambdaType string
 
+func (e LambdaType) String() string {
+	return string(e)
+}
+
 const (
 	LambdaType_JWTPopulate                  LambdaType = "JWTPopulate"
 	LambdaType_OpenIDReconcile              LambdaType = "OpenIDReconcile"
@@ -2846,6 +3015,10 @@ type LDAPConnectorConfiguration struct {
 }
 
 type LDAPSecurityMethod string
+
+func (e LDAPSecurityMethod) String() string {
+	return string(e)
+}
 
 const (
 	LDAPSecurityMethod_None     LDAPSecurityMethod = "None"
@@ -2906,6 +3079,10 @@ type LoginConfiguration struct {
 }
 
 type LoginIdType string
+
+func (e LoginIdType) String() string {
+	return string(e)
+}
 
 const (
 	LoginIdType_Email    LoginIdType = "email"
@@ -3039,6 +3216,10 @@ func (b *LoginResponse) SetStatus(status int) {
  */
 type LogoutBehavior string
 
+func (e LogoutBehavior) String() string {
+	return string(e)
+}
+
 const (
 	LogoutBehavior_RedirectOnly    LogoutBehavior = "RedirectOnly"
 	LogoutBehavior_AllApplications LogoutBehavior = "AllApplications"
@@ -3070,7 +3251,7 @@ func (b *LookupResponse) SetStatus(status int) {
 /**
  * This class contains the managed fields that are also put into the database during FusionAuth setup.
  * <p>
- * NOTE TO FUSIONAUTH DEVS: These fields are are also declared in SQL in order to boot strap the system. These need to stay in sync.
+ * NOTE TO FUSIONAUTH DEVS: These fields are also declared in SQL in order to boot strap the system. These need to stay in sync.
  * - Any changes to these fields needs to also be reflected in mysql.sql and postgresql.sql
  *
  * @author Brian Pontarelli
@@ -3166,6 +3347,10 @@ func (b *MessageTemplateResponse) SetStatus(status int) {
  */
 type MessageType string
 
+func (e MessageType) String() string {
+	return string(e)
+}
+
 const (
 	MessageType_SMS MessageType = "SMS"
 )
@@ -3200,6 +3385,10 @@ type MessengerTransport struct {
  * @author Brett Guy
  */
 type MessengerType string
+
+func (e MessengerType) String() string {
+	return string(e)
+}
 
 const (
 	MessengerType_Generic MessengerType = "Generic"
@@ -3341,6 +3530,10 @@ type OAuthError struct {
 
 type OAuthErrorReason string
 
+func (e OAuthErrorReason) String() string {
+	return string(e)
+}
+
 const (
 	OAuthErrorReason_AuthCodeNotFound                    OAuthErrorReason = "auth_code_not_found"
 	OAuthErrorReason_AccessTokenMalformed                OAuthErrorReason = "access_token_malformed"
@@ -3400,6 +3593,10 @@ const (
 
 type OAuthErrorType string
 
+func (e OAuthErrorType) String() string {
+	return string(e)
+}
+
 const (
 	OAuthErrorType_InvalidRequest          OAuthErrorType = "invalid_request"
 	OAuthErrorType_InvalidClient           OAuthErrorType = "invalid_client"
@@ -3433,6 +3630,10 @@ func (b *OAuthResponse) SetStatus(status int) {
  * @author Daniel DeGroff
  */
 type ObjectState string
+
+func (e ObjectState) String() string {
+	return string(e)
+}
 
 const (
 	ObjectState_Active        ObjectState = "Active"
@@ -3595,14 +3796,16 @@ func (b *PasswordValidationRulesResponse) SetStatus(status int) {
  * @author Daniel DeGroff
  */
 type PendingIdPLink struct {
-	DisplayName            string               `json:"displayName,omitempty"`
-	Email                  string               `json:"email,omitempty"`
-	IdentityProviderId     string               `json:"identityProviderId,omitempty"`
-	IdentityProviderName   string               `json:"identityProviderName,omitempty"`
-	IdentityProviderType   IdentityProviderType `json:"identityProviderType,omitempty"`
-	IdentityProviderUserId string               `json:"identityProviderUserId,omitempty"`
-	User                   User                 `json:"user,omitempty"`
-	Username               string               `json:"username,omitempty"`
+	DisplayName                         string                              `json:"displayName,omitempty"`
+	Email                               string                              `json:"email,omitempty"`
+	IdentityProviderId                  string                              `json:"identityProviderId,omitempty"`
+	IdentityProviderLinks               []IdentityProviderLink              `json:"identityProviderLinks,omitempty"`
+	IdentityProviderName                string                              `json:"identityProviderName,omitempty"`
+	IdentityProviderTenantConfiguration IdentityProviderTenantConfiguration `json:"identityProviderTenantConfiguration,omitempty"`
+	IdentityProviderType                IdentityProviderType                `json:"identityProviderType,omitempty"`
+	IdentityProviderUserId              string                              `json:"identityProviderUserId,omitempty"`
+	User                                User                                `json:"user,omitempty"`
+	Username                            string                              `json:"username,omitempty"`
 }
 
 /**
@@ -3664,6 +3867,10 @@ func (b *PreviewResponse) SetStatus(status int) {
  */
 type ProofKeyForCodeExchangePolicy string
 
+func (e ProofKeyForCodeExchangePolicy) String() string {
+	return string(e)
+}
+
 const (
 	ProofKeyForCodeExchangePolicy_Required                                 ProofKeyForCodeExchangePolicy = "Required"
 	ProofKeyForCodeExchangePolicy_NotRequired                              ProofKeyForCodeExchangePolicy = "NotRequired"
@@ -3699,6 +3906,10 @@ type RateLimitedRequestConfiguration struct {
  */
 type RateLimitedRequestType string
 
+func (e RateLimitedRequestType) String() string {
+	return string(e)
+}
+
 const (
 	RateLimitedRequestType_FailedLogin                  RateLimitedRequestType = "FailedLogin"
 	RateLimitedRequestType_ForgotPassword               RateLimitedRequestType = "ForgotPassword"
@@ -3724,6 +3935,10 @@ type RawLogin struct {
  * @author Brian Pontarelli
  */
 type ReactorFeatureStatus string
+
+func (e ReactorFeatureStatus) String() string {
+	return string(e)
+}
 
 const (
 	ReactorFeatureStatus_ACTIVE       ReactorFeatureStatus = "ACTIVE"
@@ -3845,6 +4060,10 @@ type RefreshToken struct {
  */
 type RefreshTokenExpirationPolicy string
 
+func (e RefreshTokenExpirationPolicy) String() string {
+	return string(e)
+}
+
 const (
 	RefreshTokenExpirationPolicy_Fixed         RefreshTokenExpirationPolicy = "Fixed"
 	RefreshTokenExpirationPolicy_SlidingWindow RefreshTokenExpirationPolicy = "SlidingWindow"
@@ -3899,6 +4118,10 @@ type RefreshTokenRevokeRequest struct {
  * @author Daniel DeGroff
  */
 type RefreshTokenUsagePolicy string
+
+func (e RefreshTokenUsagePolicy) String() string {
+	return string(e)
+}
 
 const (
 	RefreshTokenUsagePolicy_Reusable   RefreshTokenUsagePolicy = "Reusable"
@@ -3979,6 +4202,10 @@ func (b *RegistrationResponse) SetStatus(status int) {
 
 type RegistrationType string
 
+func (e RegistrationType) String() string {
+	return string(e)
+}
+
 const (
 	RegistrationType_Basic    RegistrationType = "basic"
 	RegistrationType_Advanced RegistrationType = "advanced"
@@ -4035,6 +4262,10 @@ type RequiresCORSConfiguration struct {
 }
 
 type SAMLLogoutBehavior string
+
+func (e SAMLLogoutBehavior) String() string {
+	return string(e)
+}
 
 const (
 	SAMLLogoutBehavior_AllParticipants SAMLLogoutBehavior = "AllParticipants"
@@ -4250,6 +4481,10 @@ type SecureGeneratorConfiguration struct {
  */
 type SecureGeneratorType string
 
+func (e SecureGeneratorType) String() string {
+	return string(e)
+}
+
 const (
 	SecureGeneratorType_RandomDigits       SecureGeneratorType = "randomDigits"
 	SecureGeneratorType_RandomBytes        SecureGeneratorType = "randomBytes"
@@ -4350,6 +4585,10 @@ type SonyPSNIdentityProvider struct {
  * @author Daniel DeGroff
  */
 type Sort string
+
+func (e Sort) String() string {
+	return string(e)
+}
 
 const (
 	Sort_Asc  Sort = "asc"
@@ -4727,6 +4966,10 @@ type TimeBasedDeletePolicy struct {
  */
 type TokenType string
 
+func (e TokenType) String() string {
+	return string(e)
+}
+
 const (
 	TokenType_Bearer TokenType = "Bearer"
 	TokenType_MAC    TokenType = "MAC"
@@ -4756,6 +4999,10 @@ func (b *TotalsReportResponse) SetStatus(status int) {
 
 type TOTPAlgorithm string
 
+func (e TOTPAlgorithm) String() string {
+	return string(e)
+}
+
 const (
 	TOTPAlgorithm_HmacSHA1   TOTPAlgorithm = "HmacSHA1"
 	TOTPAlgorithm_HmacSHA256 TOTPAlgorithm = "HmacSHA256"
@@ -4768,6 +5015,10 @@ const (
  * @author Brian Pontarelli
  */
 type TransactionType string
+
+func (e TransactionType) String() string {
+	return string(e)
+}
 
 const (
 	TransactionType_None             TransactionType = "None"
@@ -4968,6 +5219,10 @@ type UniqueUsernameConfiguration struct {
 
 type UniqueUsernameStrategy string
 
+func (e UniqueUsernameStrategy) String() string {
+	return string(e)
+}
+
 const (
 	UniqueUsernameStrategy_Always      UniqueUsernameStrategy = "Always"
 	UniqueUsernameStrategy_OnCollision UniqueUsernameStrategy = "OnCollision"
@@ -4977,6 +5232,10 @@ const (
  * @author Daniel DeGroff
  */
 type UnverifiedBehavior string
+
+func (e UnverifiedBehavior) String() string {
+	return string(e)
+}
 
 const (
 	UnverifiedBehavior_Allow UnverifiedBehavior = "Allow"
@@ -5110,6 +5369,10 @@ type UserActionOption struct {
  * @author Brian Pontarelli
  */
 type UserActionPhase string
+
+func (e UserActionPhase) String() string {
+	return string(e)
+}
 
 const (
 	UserActionPhase_Start  UserActionPhase = "start"
@@ -5680,6 +5943,10 @@ type UserSearchCriteria struct {
  */
 type UserState string
 
+func (e UserState) String() string {
+	return string(e)
+}
+
 const (
 	UserState_Authenticated                        UserState = "Authenticated"
 	UserState_AuthenticatedNotRegistered           UserState = "AuthenticatedNotRegistered"
@@ -5755,6 +6022,10 @@ func (b *ValidateResponse) SetStatus(status int) {
  * @author Daniel DeGroff
  */
 type VerificationStrategy string
+
+func (e VerificationStrategy) String() string {
+	return string(e)
+}
 
 const (
 	VerificationStrategy_ClickableLink VerificationStrategy = "ClickableLink"
@@ -5889,6 +6160,10 @@ type XboxIdentityProvider struct {
 }
 
 type XMLSignatureLocation string
+
+func (e XMLSignatureLocation) String() string {
+	return string(e)
+}
 
 const (
 	XMLSignatureLocation_Assertion XMLSignatureLocation = "Assertion"
