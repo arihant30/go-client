@@ -3330,7 +3330,7 @@ func (c *FusionAuthClient) RetrieveGroupMemberList(groupId string) (*GroupMember
 
 	err := c.Start(&resp, nil).
 		WithUri("/api/group/member").
-		WithUriSegment(groupId).
+		WithParameter("groupId", groupId).
 		WithMethod(http.MethodGet).
 		Do()
 	return &resp, err
@@ -5232,6 +5232,24 @@ func (c *FusionAuthClient) UpdateGroup(groupId string, request GroupRequest) (*G
 		WithUriSegment(groupId).
 		WithJSONBody(request).
 		WithMethod(http.MethodPut).
+		Do()
+	if restClient.ErrorRef == nil {
+		return &resp, nil, err
+	}
+	return &resp, &errors, err
+}
+
+// UpdateGroupMembers
+// Creates a member in a group.
+//   MemberRequest request The request object that contains all the information used to create the group member(s).
+func (c *FusionAuthClient) UpdateGroupMembers(request MemberRequest) (*MemberResponse, *Errors, error) {
+	var resp MemberResponse
+	var errors Errors
+
+	restClient := c.Start(&resp, &errors)
+	err := restClient.WithUri("/api/group/member").
+		WithJSONBody(request).
+		WithMethod(http.MethodPost).
 		Do()
 	if restClient.ErrorRef == nil {
 		return &resp, nil, err
