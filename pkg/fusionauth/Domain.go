@@ -2992,6 +2992,8 @@ const (
 	LambdaType_TwitchReconcile              LambdaType = "TwitchReconcile"
 	LambdaType_XboxReconcile                LambdaType = "XboxReconcile"
 	LambdaType_ClientCredentialsJWTPopulate LambdaType = "ClientCredentialsJWTPopulate"
+	LambdaType_SCIMServerUserRequest        LambdaType = "SCIMServerUserRequest"
+	LambdaType_SCIMServerUserResponse       LambdaType = "SCIMServerUserResponse"
 )
 
 /**
@@ -4757,6 +4759,7 @@ type Tenant struct {
 	RegistrationConfiguration         TenantRegistrationConfiguration   `json:"registrationConfiguration,omitempty"`
 	SsoConfiguration                  TenantSSOConfiguration            `json:"ssoConfiguration,omitempty"`
 	State                             ObjectState                       `json:"state,omitempty"`
+	TenantLambdaConfiguration         TenantLambdaConfiguration         `json:"tenantLambdaConfiguration,omitempty"`
 	ThemeId                           string                            `json:"themeId,omitempty"`
 	UserDeletePolicy                  TenantUserDeletePolicy            `json:"userDeletePolicy,omitempty"`
 	UsernameConfiguration             TenantUsernameConfiguration       `json:"usernameConfiguration,omitempty"`
@@ -4801,6 +4804,11 @@ type TenantDeleteRequest struct {
  */
 type TenantFormConfiguration struct {
 	AdminUserFormId string `json:"adminUserFormId,omitempty"`
+}
+
+type TenantLambdaConfiguration struct {
+	SCIMUserRequestId  string `json:"SCIMUserRequestId,omitempty"`
+	SCIMUserResponseId string `json:"SCIMUserResponseId,omitempty"`
 }
 
 /**
