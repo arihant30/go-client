@@ -2973,27 +2973,31 @@ func (e LambdaType) String() string {
 }
 
 const (
-	LambdaType_JWTPopulate                  LambdaType = "JWTPopulate"
-	LambdaType_OpenIDReconcile              LambdaType = "OpenIDReconcile"
-	LambdaType_SAMLv2Reconcile              LambdaType = "SAMLv2Reconcile"
-	LambdaType_SAMLv2Populate               LambdaType = "SAMLv2Populate"
-	LambdaType_AppleReconcile               LambdaType = "AppleReconcile"
-	LambdaType_ExternalJWTReconcile         LambdaType = "ExternalJWTReconcile"
-	LambdaType_FacebookReconcile            LambdaType = "FacebookReconcile"
-	LambdaType_GoogleReconcile              LambdaType = "GoogleReconcile"
-	LambdaType_HYPRReconcile                LambdaType = "HYPRReconcile"
-	LambdaType_TwitterReconcile             LambdaType = "TwitterReconcile"
-	LambdaType_LDAPConnectorReconcile       LambdaType = "LDAPConnectorReconcile"
-	LambdaType_LinkedInReconcile            LambdaType = "LinkedInReconcile"
-	LambdaType_EpicGamesReconcile           LambdaType = "EpicGamesReconcile"
-	LambdaType_NintendoReconcile            LambdaType = "NintendoReconcile"
-	LambdaType_SonyPSNReconcile             LambdaType = "SonyPSNReconcile"
-	LambdaType_SteamReconcile               LambdaType = "SteamReconcile"
-	LambdaType_TwitchReconcile              LambdaType = "TwitchReconcile"
-	LambdaType_XboxReconcile                LambdaType = "XboxReconcile"
-	LambdaType_ClientCredentialsJWTPopulate LambdaType = "ClientCredentialsJWTPopulate"
-	LambdaType_SCIMServerUserRequest        LambdaType = "SCIMServerUserRequest"
-	LambdaType_SCIMServerUserResponse       LambdaType = "SCIMServerUserResponse"
+	LambdaType_JWTPopulate                      LambdaType = "JWTPopulate"
+	LambdaType_OpenIDReconcile                  LambdaType = "OpenIDReconcile"
+	LambdaType_SAMLv2Reconcile                  LambdaType = "SAMLv2Reconcile"
+	LambdaType_SAMLv2Populate                   LambdaType = "SAMLv2Populate"
+	LambdaType_AppleReconcile                   LambdaType = "AppleReconcile"
+	LambdaType_ExternalJWTReconcile             LambdaType = "ExternalJWTReconcile"
+	LambdaType_FacebookReconcile                LambdaType = "FacebookReconcile"
+	LambdaType_GoogleReconcile                  LambdaType = "GoogleReconcile"
+	LambdaType_HYPRReconcile                    LambdaType = "HYPRReconcile"
+	LambdaType_TwitterReconcile                 LambdaType = "TwitterReconcile"
+	LambdaType_LDAPConnectorReconcile           LambdaType = "LDAPConnectorReconcile"
+	LambdaType_LinkedInReconcile                LambdaType = "LinkedInReconcile"
+	LambdaType_EpicGamesReconcile               LambdaType = "EpicGamesReconcile"
+	LambdaType_NintendoReconcile                LambdaType = "NintendoReconcile"
+	LambdaType_SonyPSNReconcile                 LambdaType = "SonyPSNReconcile"
+	LambdaType_SteamReconcile                   LambdaType = "SteamReconcile"
+	LambdaType_TwitchReconcile                  LambdaType = "TwitchReconcile"
+	LambdaType_XboxReconcile                    LambdaType = "XboxReconcile"
+	LambdaType_ClientCredentialsJWTPopulate     LambdaType = "ClientCredentialsJWTPopulate"
+	LambdaType_SCIMServerEnterpriseUserRequest  LambdaType = "SCIMServerEnterpriseUserRequest"
+	LambdaType_SCIMServerEnterpriseUserResponse LambdaType = "SCIMServerEnterpriseUserResponse"
+	LambdaType_SCIMServerGroupRequest           LambdaType = "SCIMServerGroupRequest"
+	LambdaType_SCIMServerGroupResponse          LambdaType = "SCIMServerGroupResponse"
+	LambdaType_SCIMServerUserRequest            LambdaType = "SCIMServerUserRequest"
+	LambdaType_SCIMServerUserResponse           LambdaType = "SCIMServerUserResponse"
 )
 
 /**
@@ -4807,8 +4811,12 @@ type TenantFormConfiguration struct {
 }
 
 type TenantLambdaConfiguration struct {
-	SCIMUserRequestId  string `json:"SCIMUserRequestId,omitempty"`
-	SCIMUserResponseId string `json:"SCIMUserResponseId,omitempty"`
+	SCIMEnterpriseUserRequestId  string `json:"SCIMEnterpriseUserRequestId,omitempty"`
+	SCIMEnterpriseUserResponseId string `json:"SCIMEnterpriseUserResponseId,omitempty"`
+	SCIMGroupRequestId           string `json:"SCIMGroupRequestId,omitempty"`
+	SCIMGroupResponseId          string `json:"SCIMGroupResponseId,omitempty"`
+	SCIMUserRequestId            string `json:"SCIMUserRequestId,omitempty"`
+	SCIMUserResponseId           string `json:"SCIMUserResponseId,omitempty"`
 }
 
 /**
