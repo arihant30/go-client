@@ -15,13 +15,19 @@
  */
 savantVersion = "1.0.0"
 
-project(group: "io.fusionauth", name: "go-client", version: "1.99.0", licenses: ["ApacheV2_0"]) {
+project(group: "io.fusionauth", name: "go-client", version: "1.32.2", licenses: ["ApacheV2_0"]) {
   workflow {
-    standard()
+    fetch {
+      cache()
+      url(url: "https://repository.savantbuild.org")
+    }
+    publish {
+      cache()
+    }
   }
 
   publishWorkflow {
-    subversion(repository: "http://svn.inversoft.org/savant")
+    subversion(repository: "https://svn.savantbuild.org")
   }
 }
 
