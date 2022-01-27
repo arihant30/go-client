@@ -2521,15 +2521,6 @@ type Integrations struct {
 }
 
 /**
- * An SPI that allows the user of the `fusionauth-java-client` library to provide the InternalJSONColumn handling (if needed). The implementation is
- * specified using the {@link #setImplementation(InternalJSONColumnService)} method.
- *
- * @author Brian Pontarelli
- */
-type InternalJSONColumnService struct {
-}
-
-/**
  * @author Brett Guy
  */
 type IPAccessControlEntry struct {
@@ -3208,6 +3199,7 @@ type LoginResponse struct {
 	State                      map[string]interface{}   `json:"state,omitempty"`
 	ThreatsDetected            []AuthenticationThreats  `json:"threatsDetected,omitempty"`
 	Token                      string                   `json:"token,omitempty"`
+	TokenExpirationInstant     int64                    `json:"tokenExpirationInstant,omitempty"`
 	TwoFactorId                string                   `json:"twoFactorId,omitempty"`
 	TwoFactorTrustId           string                   `json:"twoFactorTrustId,omitempty"`
 	User                       User                     `json:"user,omitempty"`
@@ -4199,6 +4191,7 @@ type RegistrationResponse struct {
 	Registration               UserRegistration `json:"registration,omitempty"`
 	RegistrationVerificationId string           `json:"registrationVerificationId,omitempty"`
 	Token                      string           `json:"token,omitempty"`
+	TokenExpirationInstant     int64            `json:"tokenExpirationInstant,omitempty"`
 	User                       User             `json:"user,omitempty"`
 }
 
@@ -5204,6 +5197,7 @@ type TwoFactorStartRequest struct {
 	Code          string                 `json:"code,omitempty"`
 	LoginId       string                 `json:"loginId,omitempty"`
 	State         map[string]interface{} `json:"state,omitempty"`
+	UserId        string                 `json:"userId,omitempty"`
 }
 
 /**
@@ -5938,6 +5932,7 @@ type UserResponse struct {
 	EmailVerificationId         string            `json:"emailVerificationId,omitempty"`
 	RegistrationVerificationIds map[string]string `json:"registrationVerificationIds,omitempty"`
 	Token                       string            `json:"token,omitempty"`
+	TokenExpirationInstant      int64             `json:"tokenExpirationInstant,omitempty"`
 	User                        User              `json:"user,omitempty"`
 }
 
