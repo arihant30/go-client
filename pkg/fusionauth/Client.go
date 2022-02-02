@@ -5249,7 +5249,7 @@ func (c *FusionAuthClient) UpdateGroupMembers(request MemberRequest) (*MemberRes
 	restClient := c.Start(&resp, &errors)
 	err := restClient.WithUri("/api/group/member").
 		WithJSONBody(request).
-		WithMethod(http.MethodPost).
+		WithMethod(http.MethodPut).
 		Do()
 	if restClient.ErrorRef == nil {
 		return &resp, nil, err
