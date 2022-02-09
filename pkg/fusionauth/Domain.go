@@ -4404,7 +4404,8 @@ type ScimMeta struct {
  * @author Rob Davis
  */
 type SCIMServerConfiguration struct {
-	BaseUrl string `json:"baseUrl,omitempty"`
+	BaseUrl         string `json:"baseUrl,omitempty"`
+	SchemasResponse string `json:"schemasResponse,omitempty"`
 }
 
 /**
