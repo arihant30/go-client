@@ -4367,22 +4367,12 @@ type ScimEventRequest struct {
 	Resource BaseScimResource `json:"resource,omitempty"`
 }
 
-type ScimMeta struct {
-}
-
-type ScimMeta struct {
-	Created      int64  `json:"created,omitempty"`
-	LastModified int64  `json:"lastModified,omitempty"`
-	Location     string `json:"location,omitempty"`
-	ResourceType string `json:"resourceType,omitempty"`
-}
-
 /**
  * A SCIM server where events are sent.
  *
  * @author Brett Pontarelli
  */
-type ScimServer struct {
+type ScimExternalServerConfiguration struct {
 	Enableable
 	ConnectTimeout             int                    `json:"connectTimeout,omitempty"`
 	Data                       map[string]interface{} `json:"data,omitempty"`
@@ -4398,6 +4388,23 @@ type ScimServer struct {
 	SslCertificate             string                 `json:"sslCertificate,omitempty"`
 	TenantIds                  []string               `json:"tenantIds,omitempty"`
 	Url                        string                 `json:"url,omitempty"`
+}
+
+type ScimMeta struct {
+}
+
+type ScimMeta struct {
+	Created      int64  `json:"created,omitempty"`
+	LastModified int64  `json:"lastModified,omitempty"`
+	Location     string `json:"location,omitempty"`
+	ResourceType string `json:"resourceType,omitempty"`
+}
+
+/**
+ * @author Rob Davis
+ */
+type SCIMServerConfiguration struct {
+	BaseUrl string `json:"baseUrl,omitempty"`
 }
 
 /**
@@ -4754,6 +4761,7 @@ type Tenant struct {
 	PasswordValidationRules           PasswordValidationRules           `json:"passwordValidationRules,omitempty"`
 	RateLimitConfiguration            TenantRateLimitConfiguration      `json:"rateLimitConfiguration,omitempty"`
 	RegistrationConfiguration         TenantRegistrationConfiguration   `json:"registrationConfiguration,omitempty"`
+	ScimServerConfiguration           SCIMServerConfiguration           `json:"scimServerConfiguration,omitempty"`
 	SsoConfiguration                  TenantSSOConfiguration            `json:"ssoConfiguration,omitempty"`
 	State                             ObjectState                       `json:"state,omitempty"`
 	TenantLambdaConfiguration         TenantLambdaConfiguration         `json:"tenantLambdaConfiguration,omitempty"`
