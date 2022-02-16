@@ -2877,6 +2877,27 @@ type ProviderLambdaConfiguration struct {
 }
 
 /**
+ * Temporary Lambda Engine Configuration to allow a period of time, where we
+ * can support both the legacy and the new engine types.
+ *
+ * @author Daniel DeGroff
+ */
+type LambdaEngineConfiguration struct {
+	EngineType LambdaEngineType `json:"engineType,omitempty"`
+}
+
+type LambdaEngineType string
+
+func (e LambdaEngineType) String() string {
+	return string(e)
+}
+
+const (
+	LambdaEngineType_Nashorn LambdaEngineType = "Nashorn"
+	LambdaEngineType_GraalVM LambdaEngineType = "GraalVM"
+)
+
+/**
  * Lambda API request object.
  *
  * @author Brian Pontarelli
@@ -4518,15 +4539,16 @@ type SupportsPostBindings struct {
  * @author Brian Pontarelli
  */
 type SystemConfiguration struct {
-	AuditLogConfiguration    AuditLogConfiguration    `json:"auditLogConfiguration,omitempty"`
-	CorsConfiguration        CORSConfiguration        `json:"corsConfiguration,omitempty"`
-	Data                     map[string]interface{}   `json:"data,omitempty"`
-	EventLogConfiguration    EventLogConfiguration    `json:"eventLogConfiguration,omitempty"`
-	InsertInstant            int64                    `json:"insertInstant,omitempty"`
-	LastUpdateInstant        int64                    `json:"lastUpdateInstant,omitempty"`
-	LoginRecordConfiguration LoginRecordConfiguration `json:"loginRecordConfiguration,omitempty"`
-	ReportTimezone           string                   `json:"reportTimezone,omitempty"`
-	UiConfiguration          UIConfiguration          `json:"uiConfiguration,omitempty"`
+	AuditLogConfiguration     AuditLogConfiguration     `json:"auditLogConfiguration,omitempty"`
+	CorsConfiguration         CORSConfiguration         `json:"corsConfiguration,omitempty"`
+	Data                      map[string]interface{}    `json:"data,omitempty"`
+	EventLogConfiguration     EventLogConfiguration     `json:"eventLogConfiguration,omitempty"`
+	InsertInstant             int64                     `json:"insertInstant,omitempty"`
+	LambdaEngineConfiguration LambdaEngineConfiguration `json:"lambdaEngineConfiguration,omitempty"`
+	LastUpdateInstant         int64                     `json:"lastUpdateInstant,omitempty"`
+	LoginRecordConfiguration  LoginRecordConfiguration  `json:"loginRecordConfiguration,omitempty"`
+	ReportTimezone            string                    `json:"reportTimezone,omitempty"`
+	UiConfiguration           UIConfiguration           `json:"uiConfiguration,omitempty"`
 }
 
 /**
