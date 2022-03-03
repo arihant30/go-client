@@ -1401,7 +1401,7 @@ type EntityTypeSearchRequest struct {
 }
 
 /**
- * Search request for entity types.
+ * Search response for entity types.
  *
  * @author Brian Pontarelli
  */
@@ -2193,6 +2193,40 @@ type GroupMemberListResponse struct {
 }
 
 func (b *GroupMemberListResponse) SetStatus(status int) {
+	b.StatusCode = status
+}
+
+/**
+ * Search criteria for Group Members
+ *
+ * @author Daniel DeGroff
+ */
+type GroupMemberSearchCriteria struct {
+	BaseSearchCriteria
+	Name string `json:"name,omitempty"`
+}
+
+/**
+ * Search request for Group Members.
+ *
+ * @author Daniel DeGroff
+ */
+type GroupMemberSearchRequest struct {
+	Search GroupMemberSearchCriteria `json:"search,omitempty"`
+}
+
+/**
+ * Search response for Group Members
+ *
+ * @author Daniel DeGroff
+ */
+type GroupMemberSearchResponse struct {
+	BaseHTTPResponse
+	Members []GroupMember `json:"members,omitempty"`
+	Total   int64         `json:"total,omitempty"`
+}
+
+func (b *GroupMemberSearchResponse) SetStatus(status int) {
 	b.StatusCode = status
 }
 
@@ -4391,13 +4425,13 @@ type ScimExternalServerConfiguration struct {
 }
 
 type ScimMeta struct {
-}
-
-type ScimMeta struct {
 	Created      int64  `json:"created,omitempty"`
 	LastModified int64  `json:"lastModified,omitempty"`
 	Location     string `json:"location,omitempty"`
 	ResourceType string `json:"resourceType,omitempty"`
+}
+
+type ScimMeta struct {
 }
 
 /**
