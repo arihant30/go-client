@@ -720,11 +720,14 @@ const (
  */
 type ChangePasswordRequest struct {
 	BaseEventRequest
-	ApplicationId   string `json:"applicationId,omitempty"`
-	CurrentPassword string `json:"currentPassword,omitempty"`
-	LoginId         string `json:"loginId,omitempty"`
-	Password        string `json:"password,omitempty"`
-	RefreshToken    string `json:"refreshToken,omitempty"`
+	ApplicationId    string `json:"applicationId,omitempty"`
+	ChangePasswordId string `json:"changePasswordId,omitempty"`
+	CurrentPassword  string `json:"currentPassword,omitempty"`
+	LoginId          string `json:"loginId,omitempty"`
+	Password         string `json:"password,omitempty"`
+	RefreshToken     string `json:"refreshToken,omitempty"`
+	TrustChallenge   string `json:"trustChallenge,omitempty"`
+	TrustToken       string `json:"trustToken,omitempty"`
 }
 
 /**
@@ -1702,6 +1705,7 @@ type ExternalIdentifierConfiguration struct {
 	Samlv2AuthNRequestIdTimeToLiveInSeconds       int                          `json:"samlv2AuthNRequestIdTimeToLiveInSeconds,omitempty"`
 	SetupPasswordIdGenerator                      SecureGeneratorConfiguration `json:"setupPasswordIdGenerator,omitempty"`
 	SetupPasswordIdTimeToLiveInSeconds            int                          `json:"setupPasswordIdTimeToLiveInSeconds,omitempty"`
+	TrustTokenTimeToLiveInSeconds                 int                          `json:"trustTokenTimeToLiveInSeconds,omitempty"`
 	TwoFactorIdTimeToLiveInSeconds                int                          `json:"twoFactorIdTimeToLiveInSeconds,omitempty"`
 	TwoFactorOneTimeCodeIdGenerator               SecureGeneratorConfiguration `json:"twoFactorOneTimeCodeIdGenerator,omitempty"`
 	TwoFactorOneTimeCodeIdTimeToLiveInSeconds     int                          `json:"twoFactorOneTimeCodeIdTimeToLiveInSeconds,omitempty"`
@@ -3234,6 +3238,7 @@ type LoginResponse struct {
 	ThreatsDetected            []AuthenticationThreats  `json:"threatsDetected,omitempty"`
 	Token                      string                   `json:"token,omitempty"`
 	TokenExpirationInstant     int64                    `json:"tokenExpirationInstant,omitempty"`
+	TrustToken                 string                   `json:"trustToken,omitempty"`
 	TwoFactorId                string                   `json:"twoFactorId,omitempty"`
 	TwoFactorTrustId           string                   `json:"twoFactorTrustId,omitempty"`
 	User                       User                     `json:"user,omitempty"`
@@ -3283,8 +3288,8 @@ func (b *LookupResponse) SetStatus(status int) {
 /**
  * This class contains the managed fields that are also put into the database during FusionAuth setup.
  * <p>
- * NOTE TO FUSIONAUTH DEVS: These fields are also declared in SQL in order to boot strap the system. These need to stay in sync.
- * - Any changes to these fields needs to also be reflected in mysql.sql and postgresql.sql
+ * Internal Note: These fields are also declared in SQL in order to bootstrap the system. These need to stay in sync.
+ * Any changes to these fields needs to also be reflected in mysql.sql and postgresql.sql
  *
  * @author Brian Pontarelli
  */
@@ -5236,11 +5241,12 @@ type TwoFactorSendRequest struct {
  * @author Brett Guy
  */
 type TwoFactorStartRequest struct {
-	ApplicationId string                 `json:"applicationId,omitempty"`
-	Code          string                 `json:"code,omitempty"`
-	LoginId       string                 `json:"loginId,omitempty"`
-	State         map[string]interface{} `json:"state,omitempty"`
-	UserId        string                 `json:"userId,omitempty"`
+	ApplicationId  string                 `json:"applicationId,omitempty"`
+	Code           string                 `json:"code,omitempty"`
+	LoginId        string                 `json:"loginId,omitempty"`
+	State          map[string]interface{} `json:"state,omitempty"`
+	TrustChallenge string                 `json:"trustChallenge,omitempty"`
+	UserId         string                 `json:"userId,omitempty"`
 }
 
 /**
