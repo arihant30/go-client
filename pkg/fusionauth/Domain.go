@@ -2207,7 +2207,8 @@ func (b *GroupMemberListResponse) SetStatus(status int) {
  */
 type GroupMemberSearchCriteria struct {
 	BaseSearchCriteria
-	Name string `json:"name,omitempty"`
+	GroupId string `json:"groupId,omitempty"`
+	UserId  string `json:"userId,omitempty"`
 }
 
 /**
