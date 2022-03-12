@@ -4742,6 +4742,20 @@ func (c *FusionAuthClient) SearchEventLogs(request EventLogSearchRequest) (*Even
 	return &resp, err
 }
 
+// SearchGroupMembers
+// Searches group members with the specified criteria and pagination.
+//   GroupMemberSearchRequest request The search criteria and pagination information.
+func (c *FusionAuthClient) SearchGroupMembers(request GroupMemberSearchRequest) (*GroupMemberSearchResponse, error) {
+	var resp GroupMemberSearchResponse
+
+	err := c.Start(&resp, nil).
+		WithUri("/api/group/member/search").
+		WithJSONBody(request).
+		WithMethod(http.MethodPost).
+		Do()
+	return &resp, err
+}
+
 // SearchIPAccessControlLists
 // Searches the IP Access Control Lists with the specified criteria and pagination.
 //   IPAccessControlListSearchRequest request The search criteria and pagination information.
