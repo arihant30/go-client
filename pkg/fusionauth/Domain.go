@@ -2169,35 +2169,8 @@ type GroupMember struct {
 	GroupId       string                 `json:"groupId,omitempty"`
 	Id            string                 `json:"id,omitempty"`
 	InsertInstant int64                  `json:"insertInstant,omitempty"`
-	UserId        string                 `json:"userId,omitempty"`
-}
-
-/**
- * Info about a group member for listing members
- *
- * @author Rob Davis
- */
-type GroupMemberData struct {
-	Data          map[string]interface{} `json:"data,omitempty"`
-	GroupId       string                 `json:"groupId,omitempty"`
-	Id            string                 `json:"id,omitempty"`
-	InsertInstant int64                  `json:"insertInstant,omitempty"`
 	User          User                   `json:"user,omitempty"`
 	UserId        string                 `json:"userId,omitempty"`
-}
-
-/**
- * Group Member List Response
- *
- * @author Rob Davis
- */
-type GroupMemberListResponse struct {
-	BaseHTTPResponse
-	Members []GroupMemberData `json:"members,omitempty"`
-}
-
-func (b *GroupMemberListResponse) SetStatus(status int) {
-	b.StatusCode = status
 }
 
 /**
