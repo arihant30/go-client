@@ -564,30 +564,6 @@ type BaseMessengerConfiguration struct {
 }
 
 /**
- * Base class for all SCIM events
- *
- * @author Brett Pontarelli
- */
-type BaseScimEventRequest struct {
-	ExternalId string                 `json:"externalId,omitempty"`
-	Id         string                 `json:"id,omitempty"`
-	Meta       map[string]interface{} `json:"meta,omitempty"`
-	Schemas    []string               `json:"schemas,omitempty"`
-}
-
-/**
- * Base class for all SCIM resources
- *
- * @author Brett Pontarelli
- */
-type BaseScimResource struct {
-	ExternalId string   `json:"externalId,omitempty"`
-	Id         string   `json:"id,omitempty"`
-	Meta       ScimMeta `json:"meta,omitempty"`
-	Schemas    []string `json:"schemas,omitempty"`
-}
-
-/**
  * @author Brian Pontarelli
  */
 type BaseSearchCriteria struct {
@@ -4372,72 +4348,12 @@ type SAMLv2SingleLogout struct {
 }
 
 /**
- * Container for the SCIM event information. This is the JSON that is sent from FusionAuth to SCIM Servers.
- *
- * @author Brett Pontarelli
- */
-type ScimEventRequest struct {
-	Resource BaseScimResource `json:"resource,omitempty"`
-}
-
-/**
- * A SCIM server where events are sent.
- *
- * @author Brett Pontarelli
- */
-type ScimExternalServerConfiguration struct {
-	Enableable
-	ConnectTimeout             int                    `json:"connectTimeout,omitempty"`
-	Data                       map[string]interface{} `json:"data,omitempty"`
-	Description                string                 `json:"description,omitempty"`
-	Global                     bool                   `json:"global"`
-	Headers                    map[string]string      `json:"headers,omitempty"`
-	HttpAuthenticationPassword string                 `json:"httpAuthenticationPassword,omitempty"`
-	HttpAuthenticationUsername string                 `json:"httpAuthenticationUsername,omitempty"`
-	Id                         string                 `json:"id,omitempty"`
-	InsertInstant              int64                  `json:"insertInstant,omitempty"`
-	LastUpdateInstant          int64                  `json:"lastUpdateInstant,omitempty"`
-	ReadTimeout                int                    `json:"readTimeout,omitempty"`
-	SslCertificate             string                 `json:"sslCertificate,omitempty"`
-	TenantIds                  []string               `json:"tenantIds,omitempty"`
-	Url                        string                 `json:"url,omitempty"`
-}
-
-type ScimMeta struct {
-	Created      int64  `json:"created,omitempty"`
-	LastModified int64  `json:"lastModified,omitempty"`
-	Location     string `json:"location,omitempty"`
-	ResourceType string `json:"resourceType,omitempty"`
-}
-
-type ScimMeta struct {
-}
-
-/**
  * @author Rob Davis
  */
 type SCIMServerConfiguration struct {
-	BaseUrl         string `json:"baseUrl,omitempty"`
+	Enableable
+	BaseURL         string `json:"baseURL,omitempty"`
 	SchemasResponse string `json:"schemasResponse,omitempty"`
-}
-
-/**
- * Container for SCIM event information. This is the JSON that is sent from FusionAuth to a SCIM server.
- *
- * @author Brett Pontarelli
- */
-type ScimUserEventRequest struct {
-	BaseScimEventRequest
-	Active            bool                `json:"active"`
-	DisplayName       string              `json:"displayName,omitempty"`
-	Emails            []interface{}       `json:"emails,omitempty"`
-	Groups            []GroupMember       `json:"groups,omitempty"`
-	Name              map[string]string   `json:"name,omitempty"`
-	PhoneNumbers      []map[string]string `json:"phoneNumbers,omitempty"`
-	Photos            []map[string]string `json:"photos,omitempty"`
-	PreferredLanguage []string            `json:"preferredLanguage,omitempty"`
-	Timezone          string              `json:"timezone,omitempty"`
-	UserName          string              `json:"userName,omitempty"`
 }
 
 /**
