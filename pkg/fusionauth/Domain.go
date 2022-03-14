@@ -3988,6 +3988,7 @@ type ReactorStatus struct {
 	Connectors                        ReactorFeatureStatus `json:"connectors,omitempty"`
 	EntityManagement                  ReactorFeatureStatus `json:"entityManagement,omitempty"`
 	Licensed                          bool                 `json:"licensed"`
+	ScimServer                        ReactorFeatureStatus `json:"scimServer,omitempty"`
 	ThreatDetection                   ReactorFeatureStatus `json:"threatDetection,omitempty"`
 }
 
@@ -4352,8 +4353,8 @@ type SAMLv2SingleLogout struct {
  */
 type SCIMServerConfiguration struct {
 	Enableable
-	BaseURL         string `json:"baseURL,omitempty"`
-	SchemasResponse string `json:"schemasResponse,omitempty"`
+	BaseURL string `json:"baseURL,omitempty"`
+	Schema  string `json:"schema,omitempty"`
 }
 
 /**
@@ -4741,6 +4742,9 @@ type TenantFormConfiguration struct {
 	AdminUserFormId string `json:"adminUserFormId,omitempty"`
 }
 
+/**
+ * @author Rob Davis
+ */
 type TenantLambdaConfiguration struct {
 	SCIMEnterpriseUserRequestId  string `json:"SCIMEnterpriseUserRequestId,omitempty"`
 	SCIMEnterpriseUserResponseId string `json:"SCIMEnterpriseUserResponseId,omitempty"`
