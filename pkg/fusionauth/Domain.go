@@ -4349,15 +4349,6 @@ type SAMLv2SingleLogout struct {
 }
 
 /**
- * @author Rob Davis
- */
-type SCIMServerConfiguration struct {
-	Enableable
-	BaseURL string `json:"baseURL,omitempty"`
-	Schema  string `json:"schema,omitempty"`
-}
-
-/**
  * Search API request.
  *
  * @author Brian Pontarelli
@@ -4692,7 +4683,7 @@ type Tenant struct {
 	PasswordValidationRules           PasswordValidationRules           `json:"passwordValidationRules,omitempty"`
 	RateLimitConfiguration            TenantRateLimitConfiguration      `json:"rateLimitConfiguration,omitempty"`
 	RegistrationConfiguration         TenantRegistrationConfiguration   `json:"registrationConfiguration,omitempty"`
-	ScimServerConfiguration           SCIMServerConfiguration           `json:"scimServerConfiguration,omitempty"`
+	ScimServerConfiguration           TenantSCIMServerConfiguration     `json:"scimServerConfiguration,omitempty"`
 	SsoConfiguration                  TenantSSOConfiguration            `json:"ssoConfiguration,omitempty"`
 	State                             ObjectState                       `json:"state,omitempty"`
 	TenantLambdaConfiguration         TenantLambdaConfiguration         `json:"tenantLambdaConfiguration,omitempty"`
@@ -4746,12 +4737,12 @@ type TenantFormConfiguration struct {
  * @author Rob Davis
  */
 type TenantLambdaConfiguration struct {
-	SCIMEnterpriseUserRequestId  string `json:"SCIMEnterpriseUserRequestId,omitempty"`
-	SCIMEnterpriseUserResponseId string `json:"SCIMEnterpriseUserResponseId,omitempty"`
-	SCIMGroupRequestId           string `json:"SCIMGroupRequestId,omitempty"`
-	SCIMGroupResponseId          string `json:"SCIMGroupResponseId,omitempty"`
-	SCIMUserRequestId            string `json:"SCIMUserRequestId,omitempty"`
-	SCIMUserResponseId           string `json:"SCIMUserResponseId,omitempty"`
+	ScimEnterpriseUserRequestId  string `json:"scimEnterpriseUserRequestId,omitempty"`
+	ScimEnterpriseUserResponseId string `json:"scimEnterpriseUserResponseId,omitempty"`
+	ScimGroupRequestId           string `json:"scimGroupRequestId,omitempty"`
+	ScimGroupResponseId          string `json:"scimGroupResponseId,omitempty"`
+	ScimUserRequestId            string `json:"scimUserRequestId,omitempty"`
+	ScimUserResponseId           string `json:"scimUserResponseId,omitempty"`
 }
 
 /**
@@ -4813,6 +4804,14 @@ type TenantResponse struct {
 
 func (b *TenantResponse) SetStatus(status int) {
 	b.StatusCode = status
+}
+
+/**
+ * @author Rob Davis
+ */
+type TenantSCIMServerConfiguration struct {
+	Enableable
+	Schemas map[string]interface{} `json:"schemas,omitempty"`
 }
 
 /**
