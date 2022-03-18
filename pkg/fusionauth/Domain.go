@@ -4574,6 +4574,7 @@ type SystemConfiguration struct {
 	LastUpdateInstant        int64                    `json:"lastUpdateInstant,omitempty"`
 	LoginRecordConfiguration LoginRecordConfiguration `json:"loginRecordConfiguration,omitempty"`
 	ReportTimezone           string                   `json:"reportTimezone,omitempty"`
+	State                    map[string]string        `json:"state,omitempty"`
 	UiConfiguration          UIConfiguration          `json:"uiConfiguration,omitempty"`
 }
 
