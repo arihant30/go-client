@@ -4670,6 +4670,7 @@ type Tenant struct {
 	InsertInstant                     int64                             `json:"insertInstant,omitempty"`
 	Issuer                            string                            `json:"issuer,omitempty"`
 	JwtConfiguration                  JWTConfiguration                  `json:"jwtConfiguration,omitempty"`
+	LambdaConfiguration               TenantLambdaConfiguration         `json:"lambdaConfiguration,omitempty"`
 	LastUpdateInstant                 int64                             `json:"lastUpdateInstant,omitempty"`
 	LoginConfiguration                TenantLoginConfiguration          `json:"loginConfiguration,omitempty"`
 	LogoutURL                         string                            `json:"logoutURL,omitempty"`
@@ -4685,7 +4686,6 @@ type Tenant struct {
 	ScimServerConfiguration           TenantSCIMServerConfiguration     `json:"scimServerConfiguration,omitempty"`
 	SsoConfiguration                  TenantSSOConfiguration            `json:"ssoConfiguration,omitempty"`
 	State                             ObjectState                       `json:"state,omitempty"`
-	TenantLambdaConfiguration         TenantLambdaConfiguration         `json:"tenantLambdaConfiguration,omitempty"`
 	ThemeId                           string                            `json:"themeId,omitempty"`
 	UserDeletePolicy                  TenantUserDeletePolicy            `json:"userDeletePolicy,omitempty"`
 	UsernameConfiguration             TenantUsernameConfiguration       `json:"usernameConfiguration,omitempty"`
@@ -4810,7 +4810,9 @@ func (b *TenantResponse) SetStatus(status int) {
  */
 type TenantSCIMServerConfiguration struct {
 	Enableable
-	Schemas map[string]interface{} `json:"schemas,omitempty"`
+	ClientEntityTypeId string                 `json:"clientEntityTypeId,omitempty"`
+	Schemas            map[string]interface{} `json:"schemas,omitempty"`
+	ServerEntityTypeId string                 `json:"serverEntityTypeId,omitempty"`
 }
 
 /**
