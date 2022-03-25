@@ -4736,12 +4736,12 @@ type TenantFormConfiguration struct {
  * @author Rob Davis
  */
 type TenantLambdaConfiguration struct {
-	ScimEnterpriseUserRequestId  string `json:"scimEnterpriseUserRequestId,omitempty"`
-	ScimEnterpriseUserResponseId string `json:"scimEnterpriseUserResponseId,omitempty"`
-	ScimGroupRequestId           string `json:"scimGroupRequestId,omitempty"`
-	ScimGroupResponseId          string `json:"scimGroupResponseId,omitempty"`
-	ScimUserRequestId            string `json:"scimUserRequestId,omitempty"`
-	ScimUserResponseId           string `json:"scimUserResponseId,omitempty"`
+	ScimEnterpriseUserRequestConverterId  string `json:"scimEnterpriseUserRequestConverterId,omitempty"`
+	ScimEnterpriseUserResponseConverterId string `json:"scimEnterpriseUserResponseConverterId,omitempty"`
+	ScimGroupRequestConverterId           string `json:"scimGroupRequestConverterId,omitempty"`
+	ScimGroupResponseConverterId          string `json:"scimGroupResponseConverterId,omitempty"`
+	ScimUserRequestConverterId            string `json:"scimUserRequestConverterId,omitempty"`
+	ScimUserResponseConverterId           string `json:"scimUserResponseConverterId,omitempty"`
 }
 
 /**
