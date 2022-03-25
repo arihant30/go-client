@@ -3418,10 +3418,11 @@ type MultiFactorSMSTemplate struct {
  */
 type NintendoApplicationConfiguration struct {
 	BaseIdentityProviderApplicationConfiguration
-	ButtonText   string `json:"buttonText,omitempty"`
-	ClientId     string `json:"client_id,omitempty"`
-	ClientSecret string `json:"client_secret,omitempty"`
-	Scope        string `json:"scope,omitempty"`
+	ButtonText   string                              `json:"buttonText,omitempty"`
+	ClientId     string                              `json:"client_id,omitempty"`
+	ClientSecret string                              `json:"client_secret,omitempty"`
+	Oauth2       IdentityProviderOauth2Configuration `json:"oauth2,omitempty"`
+	Scope        string                              `json:"scope,omitempty"`
 }
 
 /**
@@ -3431,10 +3432,11 @@ type NintendoApplicationConfiguration struct {
  */
 type NintendoIdentityProvider struct {
 	BaseIdentityProvider
-	ButtonText   string `json:"buttonText,omitempty"`
-	ClientId     string `json:"client_id,omitempty"`
-	ClientSecret string `json:"client_secret,omitempty"`
-	Scope        string `json:"scope,omitempty"`
+	ButtonText   string                              `json:"buttonText,omitempty"`
+	ClientId     string                              `json:"client_id,omitempty"`
+	ClientSecret string                              `json:"client_secret,omitempty"`
+	Oauth2       IdentityProviderOauth2Configuration `json:"oauth2,omitempty"`
+	Scope        string                              `json:"scope,omitempty"`
 }
 
 /**
