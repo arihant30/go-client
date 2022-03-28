@@ -3418,11 +3418,13 @@ type MultiFactorSMSTemplate struct {
  */
 type NintendoApplicationConfiguration struct {
 	BaseIdentityProviderApplicationConfiguration
-	ButtonText   string                              `json:"buttonText,omitempty"`
-	ClientId     string                              `json:"client_id,omitempty"`
-	ClientSecret string                              `json:"client_secret,omitempty"`
-	Oauth2       IdentityProviderOauth2Configuration `json:"oauth2,omitempty"`
-	Scope        string                              `json:"scope,omitempty"`
+	ButtonText    string `json:"buttonText,omitempty"`
+	ClientId      string `json:"client_id,omitempty"`
+	ClientSecret  string `json:"client_secret,omitempty"`
+	EmailClaim    string `json:"emailClaim,omitempty"`
+	Scope         string `json:"scope,omitempty"`
+	UniqueIdClaim string `json:"uniqueIdClaim,omitempty"`
+	UsernameClaim string `json:"usernameClaim,omitempty"`
 }
 
 /**
@@ -3432,11 +3434,13 @@ type NintendoApplicationConfiguration struct {
  */
 type NintendoIdentityProvider struct {
 	BaseIdentityProvider
-	ButtonText   string                              `json:"buttonText,omitempty"`
-	ClientId     string                              `json:"client_id,omitempty"`
-	ClientSecret string                              `json:"client_secret,omitempty"`
-	Oauth2       IdentityProviderOauth2Configuration `json:"oauth2,omitempty"`
-	Scope        string                              `json:"scope,omitempty"`
+	ButtonText    string `json:"buttonText,omitempty"`
+	ClientId      string `json:"client_id,omitempty"`
+	ClientSecret  string `json:"client_secret,omitempty"`
+	EmailClaim    string `json:"emailClaim,omitempty"`
+	Scope         string `json:"scope,omitempty"`
+	UniqueIdClaim string `json:"uniqueIdClaim,omitempty"`
+	UsernameClaim string `json:"usernameClaim,omitempty"`
 }
 
 /**
