@@ -1609,6 +1609,8 @@ const (
 	EventType_UserBulkCreate                 EventType = "user.bulk.create"
 	EventType_UserCreate                     EventType = "user.create"
 	EventType_UserCreateComplete             EventType = "user.create.complete"
+	EventType_UserIdentityProviderLink       EventType = "user.idp.link"
+	EventType_UserIdentityProviderUnlink     EventType = "user.idp.unlink"
 	EventType_UserDeactivate                 EventType = "user.deactivate"
 	EventType_UserDelete                     EventType = "user.delete"
 	EventType_UserDeleteComplete             EventType = "user.delete.complete"
@@ -2274,6 +2276,7 @@ const (
  * @author Daniel DeGroff
  */
 type IdentityProviderLinkRequest struct {
+	BaseEventRequest
 	DisplayName            string `json:"displayName,omitempty"`
 	IdentityProviderId     string `json:"identityProviderId,omitempty"`
 	IdentityProviderUserId string `json:"identityProviderUserId,omitempty"`
@@ -5552,6 +5555,28 @@ type UserEmailUpdateEvent struct {
 type UserEmailVerifiedEvent struct {
 	BaseEvent
 	User User `json:"user,omitempty"`
+}
+
+/**
+ * Models the User IdP Link Event.
+ *
+ * @author Rob Davis
+ */
+type UserIdentityProviderLinkEvent struct {
+	BaseEvent
+	IdentityProviderName string `json:"identityProviderName,omitempty"`
+	User                 User   `json:"user,omitempty"`
+}
+
+/**
+ * Models the User IdP Unlink Event.
+ *
+ * @author Rob Davis
+ */
+type UserIdentityProviderUnlinkEvent struct {
+	BaseEvent
+	IdentityProviderName string `json:"identityProviderName,omitempty"`
+	User                 User   `json:"user,omitempty"`
 }
 
 /**
