@@ -1612,12 +1612,12 @@ const (
 	EventType_UserDeactivate                 EventType = "user.deactivate"
 	EventType_UserDelete                     EventType = "user.delete"
 	EventType_UserDeleteComplete             EventType = "user.delete.complete"
+	EventType_UserEmailUpdate                EventType = "user.email.update"
+	EventType_UserEmailVerified              EventType = "user.email.verified"
 	EventType_UserIdentityProviderLink       EventType = "user.identity-provider.link"
 	EventType_UserIdentityProviderUnlink     EventType = "user.identity-provider.unlink"
 	EventType_UserLoginIdDuplicateOnCreate   EventType = "user.loginId.duplicate.create"
 	EventType_UserLoginIdDuplicateOnUpdate   EventType = "user.loginId.duplicate.update"
-	EventType_UserEmailUpdate                EventType = "user.email.update"
-	EventType_UserEmailVerified              EventType = "user.email.verified"
 	EventType_UserLoginFailed                EventType = "user.login.failed"
 	EventType_UserLoginNewDevice             EventType = "user.login.new-device"
 	EventType_UserLoginSuccess               EventType = "user.login.success"
@@ -5569,7 +5569,7 @@ type UserIdentityProviderLinkEvent struct {
 }
 
 /**
- * Models the User IdP Unlink Event.
+ * Models the User Identity Provider Unlink Event.
  *
  * @author Rob Davis
  */
